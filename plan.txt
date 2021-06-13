@@ -1,6 +1,6 @@
--- Create an NPM Project
+++ Create an NPM Project
 
--- Install all dependencies
+++ Install all dependencies
     - Dependencies 
         - express
         - ejs
@@ -8,12 +8,12 @@
     - Dev Dependencies
         - nodemon
 
--- Create Express Server 
+++ Create Express Server 
     - Create a index.js file
 
--- Create directory structure
+++ Create directory structure
 
--- Git Setup and Initial Commit
+++ Git Setup and Initial Commit
     - git init
     - git remote add origin <"github URL">
     - Create .gitignore and add node_modules/ in it
