@@ -6,6 +6,8 @@ const path = require('path');
 const expressLayout = require('express-ejs-layouts');
 
 
+app.use(express.static('assets'));
+
 //Display home view at root route
 app.get('/', (req, res) => {
 
