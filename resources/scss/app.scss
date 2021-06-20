@@ -1,4 +1,10 @@
 @import './variables';
+@import '~noty/src/noty.scss';
+@import '~noty/src/themes/mint.scss';
+
+*{
+    scroll-behavior: smooth !important;
+}
 
 body {
     font-family: 'Lato', sans-serif;
@@ -51,6 +57,10 @@ section.hero {
         border-color: $pure;
         color: $pure;
     }
+
+    &:focus {
+        outline: none;
+    }
 }
 
 
@@ -60,6 +70,10 @@ section.hero {
 
     &:hover {
         background: $primary-hover;
+    }
+
+    &:focus {
+        outline: none;
     }
 }
 
@@ -88,3 +102,8 @@ section.login, section.register {
     
 }
 
+
+.noty_theme__mint {
+    border-radius: 50px !important;
+    padding-left: 8px !important;
+}
