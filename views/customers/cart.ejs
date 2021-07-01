@@ -43,16 +43,25 @@
                     <span class="text-lg font-bold">Total Amount:</span>
                     <span class="amount text-2xl font-bold ml-2">₹<%= session.cart.totalPrice %></span>
                 </div>
-                <div>
-                    <form action="" class="mt-12">
-                        <input class="border border-gray-400 p-2 w-1/2 mb-4" type="text" placeholder="Phone number">
-                        <input class="border border-gray-400 p-2 w-1/2" type="text" placeholder="Address">
-                        <div>
-                            <button type="submit" class="btn-primary rounded-full px-6 py-2 text-white font-bold mt-6">Order Now</button>
-                        </div>
-                    </form>
-                </div>
-                <!-- <a href="" class="inline-block cursor-pointer btn-primary rounded-full px-6 py-2 text-white font-bold mt-6">Login to continue</a> -->
+
+                <% if(user) { %>
+                    <div>
+                        <form action="/orders" method="POST" class="mt-12">
+                            <% if(messages.error) { %>
+                                <p class="text-red-500 text-sm" ><%= messages.error %></p>
+                            <% } %>
+                            <input name="phone" value="<%= messages.phone %>"class="border border-gray-400 p-2 w-1/2 mb-4" type="text" placeholder="Phone number">
+                            <input name="address" value="<%= messages.address %>" class="border border-gray-400 p-2 w-1/2" type="text" placeholder="Address">
+                            <div>
+                                <button type="submit" class="btn-primary rounded-full px-6 py-2 text-white font-bold mt-6">Order Now</button>
+                            </div>
+                        </form>
+                    </div>
+                <% } else { %>
+                    <a href="/login" class="inline-block cursor-pointer btn-primary rounded-full px-6 py-2 text-white font-bold mt-6">Login to continue</a>
+                
+                <% } %>
+                
             </div>
         </div>
     
