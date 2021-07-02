@@ -10,6 +10,7 @@ const session = require('express-session');
 const flash = require('express-flash');
 const MongoStore = require('connect-mongo');
 const passport = require('passport');
+const Emitter = require('events');
 
 
 //Database Connection
@@ -29,6 +30,11 @@ connection.once('open', () => {
 //     mongooseConnection: connection,
 //     collection: 'sessions'
 // });
+
+
+// Event Emitter
+const eventEmitter = new Emitter();
+app.set('eventEmitter', eventEmitter);
 
 
 //Session configuration
@@ -82,9 +88,32 @@ require('./routes/web')(app);
 
 
 //Listen Server on Port 8000
-app.listen(PORT, (err) => {
-    if(err){ console.log(`Error: ${err}`); }
+const server = app.listen(PORT, (err) => {
+                    if(err){ console.log(`Error: ${err}`); }
 
-    console.log(`Server is up and running on port ${PORT}`);
+                    console.log(`Server is up and running on port ${PORT}`);
+                    
+                });
+
+
+// Socket for Updating Order Status on single order page at client side and Updating Orders on Admin Orders Page
+const io = require('socket.io')(server);
+io.on('connection', (socket) => {
     
+    // Join Private Room
+    socket.on('join', (roomName) => {
+        socket.join(roomName);
+    });
+});
+
+
+//Event Emitter orderPlaced from customer/order_controller
+eventEmitter.on('orderUpdated', (data) => {
+    io.to(`order_${data.id}`).emit('orderUpdatedFromServer', data);
+});
+
+
+//Event Emitter orderPlaced from admin/order_controller
+eventEmitter.on('orderPlaced', (data) => {
+    io.to('adminRoom').emit('orderPlacedFromServer', data);
 });
