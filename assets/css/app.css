@@ -438,7 +438,7 @@ section.status {
 .status-box ul li small {
   float: right;
   font-size: 14px;
-  margin-top: 8px;
+  margin-top: 2px;
 }
 .status-box ul li.step-completed:before {
   background: #ccc;
@@ -454,4 +454,21 @@ section.status {
 }
 .status-box ul li.current-status span:after {
   background: #FE5F1E;
+}
+
+@media (max-width: 1325px) {
+  .container {
+    max-width: 90%;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+@media (max-width: 768px) {
+  .status-box ul li span:before {
+    font-size: 34px;
+  }
 }

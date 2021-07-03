@@ -97,9 +97,6 @@ updateStatus(order);
 // Call Socket
 let socket = io();
 
-//Call Admin
-initAdmin(socket);
-
 
 //Join Private Room
 if(order) {
@@ -110,6 +107,9 @@ if(order) {
 //Socket for Updating Orders on Admin Orders page in real-time
 const adminAreaPath = window.location.pathname;
 if(adminAreaPath.includes('admin')) {
+
+    //Call Admin
+    initAdmin(socket);
     socket.emit('join', 'adminRoom');
 }
 

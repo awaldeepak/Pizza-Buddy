@@ -1998,9 +1998,7 @@ function updateStatus(order) {
 
 updateStatus(order); // Call Socket
 
-var socket = io(); //Call Admin
-
-(0,_admin__WEBPACK_IMPORTED_MODULE_2__.initAdmin)(socket); //Join Private Room
+var socket = io(); //Join Private Room
 
 if (order) {
   socket.emit('join', "order_".concat(order._id)); // socket.emmit(event_name, roomName)
@@ -2010,6 +2008,8 @@ if (order) {
 var adminAreaPath = window.location.pathname;
 
 if (adminAreaPath.includes('admin')) {
+  //Call Admin
+  (0,_admin__WEBPACK_IMPORTED_MODULE_2__.initAdmin)(socket);
   socket.emit('join', 'adminRoom');
 } //Event Emitter
 

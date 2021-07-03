@@ -231,7 +231,7 @@ section.status {
             small {
                 float: right;
                 font-size: 14px;
-                margin-top: 8px;
+                margin-top: 2px;
             }
         }
 
@@ -269,5 +269,25 @@ section.status {
                 }
             }
        }
+    }
+}
+
+
+@media (max-width: 1325px) {
+    .container {
+        max-width: 90%;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .status-box ul li span:before {
+        font-size: 34px;
     }
 }
