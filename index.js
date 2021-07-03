@@ -14,8 +14,7 @@ const Emitter = require('events');
 
 
 //Database Connection
-const url = 'mongodb://localhost/pizza-buddy'
-mongoose.connect(url, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: true});
+mongoose.connect(process.env.MONGO_CONNECTION_URL, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: true});
 
 const connection = mongoose.connection;
 connection.once('open', () => {
@@ -85,6 +84,13 @@ app.set('view engine', 'ejs');
 
 
 require('./routes/web')(app);
+
+// Handling Page Not Found Error
+app.use((req, res) => {
+    return res.status(404).render('Errors/404', {
+        layout: "Errors/404"
+    });
+});
 
 
 //Listen Server on Port 8000
