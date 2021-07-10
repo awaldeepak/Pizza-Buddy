@@ -51,17 +51,13 @@ function authController() {
             
             user.save().then((user) => {
 
-                //Login
-
-
-                return res.redirect('/');
+                //Registered User
+                req.flash('success', 'Registered Successfully! Please Log In to continue...');
+                return res.redirect('/login');
             }).catch(err => {
                 req.flash('error', 'Something went wrong');
                 return res.redirect('/register');
             });
-
-
-            console.log(req.body);
             
         },
 
@@ -97,7 +93,7 @@ function authController() {
                         req.flash('error',msgInfo.message);
                         return next(err);
                     }
-
+                    req.flash('success', 'Logged In Successfully');
                     return res.redirect(_getRedirectUrl(req));
 
                 });
