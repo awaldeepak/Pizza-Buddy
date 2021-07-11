@@ -4,6 +4,7 @@
   "description": "A Real-time pizza delivery web application",
   "main": "index.js",
   "scripts": {
+    "serve": "node index.js",
     "development": "mix",
     "watch": "mix watch",
     "production": "mix --production",
